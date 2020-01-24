@@ -43,7 +43,7 @@ app.get("/", function(req,res) {
     res.render("index");
 });
 
-//  Playlist, /api/playlists, GET, READ, Returning JSON data for ALL Playlists and ALL songs on each playlist *
+//  Playlist, /api/playlists, GET, READ, Returning JSON data for ALL Playlists and ALL songs on each playlist **
 
 
 
@@ -59,7 +59,7 @@ app.get("/api/playlists/:id", function(req, res) {
     });
 });
 // Playlist, /api/playlists/:id, GET, 
-// READ, Return JSON data for ONE playlist and ALL songs on that playlist *
+// READ, Return JSON data for ONE playlist and ALL songs on that playlist **
 
 
 
@@ -77,7 +77,7 @@ app.put("/api/posts", function(req, res) {
     });
 }); 
 // Playlist, /api/playlists, 
-// PUT, UPDATE, Updates playlist based on req.body *
+// PUT, UPDATE, Updates playlist based on req.body **
 
 
 
@@ -97,7 +97,7 @@ app.put("/api/posts", function(req, res) {
          .end();
      });
  });
-// Playlist, /api/playlists, POST, CREATE, Creates new playlist based on req.body AND creates associations in playlistSongs db *
+// Playlist, /api/playlists, POST, CREATE, Creates new playlist based on req.body AND creates associations in playlistSongs db **
 
 
 app.get("/api/users/", function(req, res) {
@@ -109,7 +109,7 @@ app.get("/api/users/", function(req, res) {
         res.json(dbUser);
     });
 }); 
-// User, /api/users/, GET, READ, Return JSON data for ALL users based on req.body conditions; returns ALL playlists and all songs and for each user as well *
+// User, /api/users/, GET, READ, Return JSON data for ALL users based on req.body conditions; returns ALL playlists and all songs and for each user as well **
 
 
 app.get("/api/users/:id", function(req, res) {
@@ -123,7 +123,7 @@ app.get("/api/users/:id", function(req, res) {
         res.json(dbUser);
     });
 }); 
-// User, /api/users/:id, GET, READ, Return JSON data for ONE user and all their playlists and all songs for each playlist *
+// User, /api/users/:id, GET, READ, Return JSON data for ONE user and all their playlists and all songs for each playlist **
 
 
 
@@ -138,7 +138,7 @@ app.get("/api/users/:id", function(req, res) {
          res.json(dbSubscription);
      });
  });
-// Subscription, /api/subscriptions, GET, FIND, Return JSON data for ALL subscriptions based on req.body conditions. Returns the playlist and all songs as well.* 
+// Subscription, /api/subscriptions, GET, FIND, Return JSON data for ALL subscriptions based on req.body conditions. Returns the playlist and all songs as well.** 
 
 
 
@@ -155,7 +155,7 @@ app.get("/api/users/:id", function(req, res) {
          res.json(dbSubscription)
      });
  });
-// Subscription, /api/subscriptions/:id, DELETE, DESTROY, Deletes a subscription associated with req.params.id.*
+// Subscription, /api/subscriptions/:id, DELETE, DESTROY, Deletes a subscription associated with req.params.id.**
 
 
 
@@ -170,7 +170,7 @@ app.get("/api/users/:id", function(req, res) {
          res.json(dbSpotify);
      });
  });
-// Spotify, /search/:song, GET, READ, Searches the spotify api for supplied song and returns JSON data for the results. *
+// Spotify, /search/:song, GET, READ, Searches the spotify api for supplied song and returns JSON data for the results. **
 
 
 
@@ -184,7 +184,7 @@ app.get("/search/:song"), function (req, res) {
         res.json(dbAuthor);
       });
     });
-// Index, "/", GET, READ, Renders login/register page is user is NOT logged in. If user IS logged in, redirect to /dashboard *
+// Index, "/", GET, READ, Renders login/register page is user is NOT logged in. If user IS logged in, redirect to /dashboard **
 
 
 
@@ -197,7 +197,7 @@ app.get("/api/profile", function(req, res) {
         res.json(dbProfile);
     });
 }); 
-// Profile, /profile, GET, READ, Renders a list of all playlists and subscriptions belonging to logged in user. Also shows a list of all users.
+// Profile, /profile, GET, READ, Renders a list of all playlists and subscriptions belonging to logged in user. Also shows a list of all users.**
 
 
 
@@ -213,7 +213,7 @@ app.get("/profile/:id", function(req, res) {
     });
 }); 
 // Profile, /profile/:id, GET, 
-// READ, Renders a list of all playlists and subscriptions belonging to user id matching req.params.id
+// READ, Renders a list of all playlists and subscriptions belonging to user id matching req.params.id **
 
 
 
@@ -232,7 +232,7 @@ app.get("/playlist/:id", function(req, res) {
     });
 });
 // Playlist, /playlist/:id, GET, 
-// READ, Displays all the songs on the playlist with given id*
+// READ, Displays all the songs on the playlist with given id**
 
 
 
@@ -245,7 +245,7 @@ app.get("/playlist/:id", function(req, res) {
          });
  });
 // Playlist, /playlist/:id/edit, GET, READ, 
-// Displays the edit view for playlist with given id*
+// Displays the edit view for playlist with given id**
 
 
 
