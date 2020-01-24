@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS mixtaper;
+CREATE DATABASE mixtaper;
