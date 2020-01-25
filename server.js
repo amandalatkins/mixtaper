@@ -4,7 +4,7 @@ const session = require("express-session");
 const path = require("path");
 
 // Requiring passport as we've configured it
-const passport = require("./config/passport");
+const passport = require("./app/config/passport.js");
 
 // Setting up port variable
 var PORT = process.env.PORT || 3000;
