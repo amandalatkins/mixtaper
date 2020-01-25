@@ -4,28 +4,24 @@ var db = require("../models");
 module.exports = function(app) {
 
 
-app.get("/search/:song", function(req, res) {
-    db.Spotify.search({
-        where: {
-            ?????????
-        }
-    }).then(function(dbSpotify) {
-        res.json(dbSpotify);
-    });
-});
-// Spotify, /search/:song, GET, READ, Searches the spotify api for supplied song and returns JSON data for the results. **
-
-
-app.get("/search/:song"), function (req, res) {
-    db.Spotify.render({
-        where: {
-            ????????
-        }
-    }).then(function(dbAuthor) {
-        res.json(dbAuthor);
-      });
-    });
-// Index, "/", GET, READ, Renders login/register page is user is NOT logged in. If user IS logged in, redirect to /dashboard **
+    require('dotenv').config();
+    const SpotifyAPI = require("node-spotify-api");
+    const spotifyKeys = require("../config/spotify");
+    const spotify = new SpotifyAPI(spotifyKeys);
+    
+    app.get('/api/search/:song', function(req,res) {
+            spotify.search({ 
+                type: 'track', 
+                query: req.params.song, 
+                limit: 10 
+            }, function(err, data) {
+                if (err) {
+                    console.log(err);
+                    res.status(404).end();
+                }
+                res.json(data.tracks.items);
+            });
+        });
 
 };
 
