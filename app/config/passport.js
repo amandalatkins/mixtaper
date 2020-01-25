@@ -27,7 +27,7 @@ passport.use(new LocalStrategy(
           }
 
           // If the supplied password does not match the one in the db
-          else if (!theUser.validPassword(password)) {
+          else if (!theUser.validPass(password)) {
             return done(null, false, {
               message: "That's not the right password :("
             });
@@ -35,7 +35,7 @@ passport.use(new LocalStrategy(
           // Return the user if everything is good to go
           return done(null, dbUser);
         });
-      }
+    }
 ));
 
 // This keeps the login persistent across all pages/requests of our application
