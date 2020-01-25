@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     }
 
     // Add a method to the User prototype which uses bcrypt to compare what was sent by the client to what is stored in the database
-    User.prototype.validPass = pw => {
+    User.prototype.validPass = function(pw) {
         return bcrypt.compareSync(pw, this.password);
     };
 
@@ -40,6 +40,6 @@ module.exports = function(sequelize, DataTypes) {
         // Take the client supplied password and encrypt it before storing in the database.
         newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(10), null);
     });
-    
+
     return User;
 }

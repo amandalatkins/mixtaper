@@ -33,7 +33,7 @@ passport.use(new LocalStrategy(
             });
           }
           // Return the user if everything is good to go
-          return done(null, dbUser);
+          return done(null, theUser);
         });
     }
 ));

@@ -23,12 +23,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Require the routes files
-// *** THESE NEED TO BE UPDATED TO DEXTER'S FILE STRUCTURE
-require("./app/routes/apiRoutes.js")(app);
-require("./app/routes/htmlRoutes.js")(app);
+// *** NEEDS TO BE UPDATED TO DEXTER'S FILE STRUCTURE
+require("./app/routes/test_routes.js")(app);
 
 // Require db models for syncing
-const db = require("./models");
+const db = require("./app/models");
 
 // Syncing our database via Sequelize, then initalizing the app listening
 db.sequelize.sync().then(function() {
