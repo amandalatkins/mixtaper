@@ -1,3 +1,9 @@
+var db = require("../models");
+
+// Routes
+module.exports = function(app) {
+
+
 app.get("/search/:song", function(req, res) {
     db.Spotify.search({
         where: {
@@ -20,3 +26,6 @@ app.get("/search/:song"), function (req, res) {
       });
     });
 // Index, "/", GET, READ, Renders login/register page is user is NOT logged in. If user IS logged in, redirect to /dashboard **
+
+};
+

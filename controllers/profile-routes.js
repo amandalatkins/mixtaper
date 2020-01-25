@@ -1,9 +1,15 @@
 var db = require("../models");
 
+// Routes
+module.exports = function(app) {
 
-app.get("profile", function(req, res) {
+
+app.get("/profile", function(req, res) {
     db.Profile.findAll({
-        include: [db.Playlist, db.Subscription]
+        where: {
+            id: req.params.id
+        },
+        include: [db.Playlists, db.Subscriptions]
     }).then(function(dbProfile) {
         res.json(dbProfile);
     });
@@ -16,10 +22,12 @@ app.get("/profile/:id", function(req, res) {
         where: {
             id: req.params.id
         },
-            include: [db.Playlist, db.Subscriptions] 
+            include: [db.Playlists, db.Subscriptions] 
     }).then(function(dbProfile) {
         res.json(dbProfile);
     });
 }); 
 // Profile, /profile/:id, GET, 
 // READ, Renders a list of all playlists and subscriptions belonging to user id matching req.params.id **
+
+};

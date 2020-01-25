@@ -1,5 +1,8 @@
 var db = require("../models");
 
+// Routes
+module.exports = function(app) {
+
 
 app.get("/playlist/:id", function(req, res) {
     var query = {};
@@ -25,3 +28,5 @@ app.get("/playlist/:id/edit", function(req, res) {
 });
 // Playlist, /playlist/:id/edit, GET, READ, 
 // Displays the edit view for playlist with given id*
+
+};

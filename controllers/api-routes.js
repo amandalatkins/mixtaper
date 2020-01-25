@@ -1,3 +1,27 @@
+const passport = require("../config/passport") 
+
+// Routes
+module.exports = function(app) {
+
+
+app.post("/api/users/add", function(req, res) {
+    db.Users.create(req.body).then(function(dbUser) {
+        res.status(200);
+    });
+});
+// User, /api/users/add, POST, CREATE, Creates a new user and returns status(200) on success
+
+
+
+app.get("/api/users/login", 
+    passport.authenticate("local"),
+        function(req, res) {
+        res.json(req.user);
+    });
+// User, /api/users/login, GET, FIND, Uses Passpost to authenticate user against the database and serialize. Redirects user to /profile on success. Alerts the user on failure.
+
+
+
 app.get("/api/playlists/:id", function(req, res) {
     db.Playlists.findOne({
         Where: {
@@ -10,6 +34,7 @@ app.get("/api/playlists/:id", function(req, res) {
 });
 // Playlist, /api/playlists/:id, GET, 
 // READ, Return JSON data for ONE playlist and ALL songs on that playlist **
+
 
 
 app.put("/api/posts", function(req, res) {
@@ -98,4 +123,4 @@ app.delete("/api/subscriptions/:id", function(req, res) {
 // Subscription, /api/subscriptions/:id, DELETE, DESTROY, Deletes a subscription associated with req.params.id.**
 
 
-
+};
