@@ -71,3 +71,80 @@ function renderPlaylistList(rows) {
 
 
 //_______________________________________________________________________________________
+
+
+
+// what do you want to do? Populate list of users, class: userName-list
+
+$(document).ready(function(){
+    var userNameVar =$("#username-list");
+
+// adding event listener to the form to create a new object
+$(document).on("submit", "#add-username", handleAddUserNameList);
+
+// Getting initial list of usernames
+getUserNameList();
+
+// A function to handle what happens when the form is cubmitted to create new user list 
+function handleAddUserNameList(event){
+  event.preventDefault();
+
+// Don't do anything if the name fields not filled
+if (!userNameInput.val().trim()) {
+  return;
+}
+
+// Calling the insertUs
+insertUserNameList({
+    name: userNameVar
+      .val()
+      .trim()
+  });
+}
+
+// A function for creating a userName list. Calls get /api/users upon completion
+function insertUserNameList(userNameData) {
+  $.post("/api/users", userNameData)
+  .then(getUserNameList);
+}
+
+// Function for creating a new list row for UserNameList
+function createUserNameRow(userNameData) {
+  var newUNL = $("<tr>");
+  newUNL.data("playlist", userNameData);
+  newUNL.append("<td>" + userNameData.name + "</td>");
+  if (userNameData.Posts) {
+    newUNL.append("<td> " + userNameData.Posts.length + "</td>"); 
+  } else {
+    newUNL.append("<td>0</td>");
+  }
+  newUNL.append("<td><a href='/userNameListDetails?user_id=" + userNameData.id + "'>Go to User Name List</a></td>");
+  newUNL.append("<td><a href='cms?username_id=" + userNameData.id + "'>Create User Name List</a></td>");
+  return newUNL;
+  }
+
+// Function for retrieving user name list and getting them ready to be rendered to the page
+function getUserNameList() {
+    $.get("/api/users", function(data) {
+      var rowsToAdd = [];
+      for (var i = 0; i < data.length; i++) {
+        rowsToAdd.push(createUsernameRow(data[i]));
+      }
+      renderUserNameList(rowsToAdd);
+      userNameVar.val("");
+    });
+}
+
+// A function for rendering the list of user names to the page
+function renderUserNameList(rows) {
+    authorList.children().not(":last").remove();
+    authorContainer.children(".alert").remove();
+    if (rows.length) {
+      console.log(rows);
+      authorList.prepend(rows);
+    }
+    }
+  }
+});
+
+
