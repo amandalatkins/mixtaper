@@ -6,25 +6,25 @@ module.exports = function(app) {
 
 app.post("/api/users/add", function(req, res) {
     db.Users.create(req.body).then(function(dbUser) {
-        res.status(200);
+        res.status(200).end();
     });
 });
 // User, /api/users/add, POST, CREATE, Creates a new user and returns status(200) on success
 
 
 
-app.get("/api/users/login", 
-    passport.authenticate("local"),
-        function(req, res) {
-        res.json(req.user);
-    });
+// app.get("/api/users/login", 
+//     passport.authenticate("local"),
+//         function(req, res) {
+//         res.json(req.user);
+//     });
 // User, /api/users/login, GET, FIND, Uses Passpost to authenticate user against the database and serialize. Redirects user to /profile on success. Alerts the user on failure.
 
 
 
 app.get("/api/playlists/:id", function(req, res) {
-    db.Playlists.findOne({
-        Where: {
+    db.Playlist.findOne({
+        where: {
             id: req.params.id
         }
     })
@@ -37,20 +37,56 @@ app.get("/api/playlists/:id", function(req, res) {
 
 
 
-app.put("/api/posts", function(req, res) {
-    db.Playlists.update(req.body, 
-        {
-        where: {
-        id: req.body.id
-        }    
+app.put("/api/playlists/:id", function(req, res) {
+    db.Song.create({
+        title: req.body.title,
+        artist: req.body.artist,
+        genre: req.body.genre,
+        link: req.body.link 
     })
-    .then(function(dbPlaylist) {
+    .then(function(responseData) {
+
+        db.PlaylistSongs.create({
+            songId: responseData.insertId,
+            playlistId: req.params.id
+        }).then(function(response){
         res.status(200)
         .end();
     });
 }); 
 // Playlist, /api/playlists, 
 // PUT, UPDATE, Updates playlist based on req.body **
+
+app.delete("/api/playlists/:id", function(req, res) {
+    db.Playlist.destroy({
+        where: {
+            id: req.parms.id
+        }
+    })
+    .then(function(dbPlaylist) {
+        res.json(dbPlaylist);
+    });
+});
+// delete playlist
+
+app.delete("/api/playlists/:playlistId/song/:songId", function(req, res) {
+    db.Playlist.destroy({
+            where:{
+                id: req.params.id
+            }
+        }).then(function(responseData) {
+
+    db.Song.destroy({
+            title: req.params.title,
+            artist: req.params.artist,
+            genre: req.params.genre,
+            link: req.params.link    
+        }).then(function(response) {
+        res.status(200).end();
+    });
+   });
+// delete songs /api/playlists/:playlistId/song/:songId
+
 
 app.post("/api/playlists", function(req, res) {
     console.log(req.body);
