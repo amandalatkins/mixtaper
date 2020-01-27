@@ -80,7 +80,7 @@ $(document).ready(function(){
     var userNameVar =$("#username-list");
 
 // adding event listener to the form to create a new object
-$(document).on("submit", "#add-username", handleAddUserNameList);
+// $(document).on("submit", "#add-username", handleAddUserNameList);
 
 // Getting initial list of usernames
 getUserNameList();
@@ -111,15 +111,17 @@ function insertUserNameList(userNameData) {
 // Function for creating a new list row for UserNameList
 function createUserNameRow(userNameData) {
   var newUNL = $("<tr>");
-  newUNL.data("playlist", userNameData);
-  newUNL.append("<td>" + userNameData.name + "</td>");
-  if (userNameData.Posts) {
-    newUNL.append("<td> " + userNameData.Posts.length + "</td>"); 
+  newUNL.data("userId", userNameData.id);
+  newUNL.append("<td><a href='/profile/" + userNameData.id + "'>" + userNameData.name + "</a></td>");
+  //<a href="/profile/1">username</a>
+
+  if (userNameData.Playlists) {
+    newUNL.append("<td> " + userNameData.Playlists.length + "</td>"); 
   } else {
     newUNL.append("<td>0</td>");
   }
-  newUNL.append("<td><a href='/userNameListDetails?user_id=" + userNameData.id + "'>Go to User Name List</a></td>");
-  newUNL.append("<td><a href='cms?username_id=" + userNameData.id + "'>Create User Name List</a></td>");
+  // newUNL.append("<td><a href='/userNameListDetails?user_id=" + userNameData.id + "'>Go to User Name List</a></td>");
+  // newUNL.append("<td><a href='cms?username_id=" + userNameData.id + "'>Create User Name List</a></td>");
   return newUNL;
   }
 
