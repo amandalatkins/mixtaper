@@ -4,7 +4,7 @@ $(document).ready(function() {
     var passwordInput = $("#password-input");
 
     $(document).on("click", "login-button", handleLoginPress);
-    $(document).on("click", "create-account-button", handleCreateAccountPress);
+    $(document).on("click", "register-button", handleCreateAccountPress);
 
 //login button
 //redirects to authentication then to userPlaylists
