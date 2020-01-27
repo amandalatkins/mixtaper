@@ -34,6 +34,17 @@ function handleCreateAccountPress(e){
         alert("Please enter your username and password");
         return;
     }
+    $.ajax('/api/users/register', {
+        data: {
+          username: $('#login-input .username').val().trim(),
+          password: $('#password-input .password').val().trim()
+        },
+        type: "POST"
+    }).then(function(response) {
+        if (response.username) {
+            console.log("Logged In!");
+        }
+        });
     
 }
 });

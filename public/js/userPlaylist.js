@@ -68,10 +68,7 @@ function renderPlaylistList(rows) {
       console.log(rows);
       authorList.prepend(rows);
     }
-
     }
-  
-
 
 // Function for handling what happens when the delete button is pressed
 function handleDeletePlaylistPress() {
