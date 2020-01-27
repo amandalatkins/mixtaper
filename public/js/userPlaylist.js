@@ -1,6 +1,7 @@
 $(document).ready(function(){
 // Getting references to the playlist input
     var playlistVar = $("#playlist-name");
+    var userVar = $("#username-list");
 
 // Adding event listeners to the form to create a new object, and the button to delete
 // a playlist
@@ -26,6 +27,7 @@ insertPlaylist({
       .trim()
   });
 }
+
   
 // A function for creating an pl. Calls getPlaylists upon completion
 function insertPlaylist(playlistData) {
@@ -62,11 +64,11 @@ function getPlaylists() {
   }
 // A function for rendering the list of playlists to the page
 function renderPlaylistList(rows) {
-    authorList.children().not(":last").remove();
-    authorContainer.children(".alert").remove();
+    // playlistVar.children().not(":last").remove();
+    // playlistVar.children(".alert").remove();
     if (rows.length) {
       console.log(rows);
-      authorList.prepend(rows);
+      playlistVar.prepend(rows);
     }
     }
 
@@ -80,6 +82,23 @@ function handleDeletePlaylistPress() {
     })
       .then(getPlaylists);
   }
+//__________________________________________________________________________________________________________________
+  function createUserRow(userData) {
+    var userList = $("<tr>");
+    userList.data("user", userData);
+    userList.append("<td>" + userData.name + "</td>");
+    if (playlistData.Posts) {
+      userList.append("<td> " + playlistData.Posts.length + "</td>");
+    } else {
+      userList.append("<td>0</td>");
+    }
+    userList.append("<td><a href='/playlistDetails?playlist_id=" + userData.id + "'>Go to Playlist</a></td>");
+    userList.append("<td><a href='/cms?playlist_id=" + usertData.id + "'>Create Playlist</a></td>");
+    userList.append("<td><a style='cursor:pointer;color:red' class='delete-playlist'>Delete Playlist</a></td>");
+    return userList;
+  }
+  
+
 });
 
 
