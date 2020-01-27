@@ -70,18 +70,17 @@ app.delete("/api/playlists/:id", function(req, res) {
 // delete playlist
 
 app.delete("/api/playlists/:playlistId/song/:songId", function(req, res) {
-    db.Playlist.destroy({
-            where:{
-                id: req.params.id
+    db.PlaylistSongs.destroy({
+            where: {
+                SongId: req.params.songId,
+                PlaylistId: req.params.playlistId
             }
         }).then(function(responseData) {
-
     db.Song.destroy({
-            title: req.params.title,
-            artist: req.params.artist,
-            genre: req.params.genre,
-            link: req.params.link    
-        }).then(function(response) {
+        where: {
+            id: req.params.songId
+        }
+            }).then(function(response) {
         res.status(200).end();
     });
    });
@@ -90,7 +89,7 @@ app.delete("/api/playlists/:playlistId/song/:songId", function(req, res) {
 
 app.post("/api/playlists", function(req, res) {
     console.log(req.body);
-    db.Playlists.create({
+    db.Playlist.create({
        Where: {
        playlist: req.body.playlist,
        id: req.body.id
@@ -108,7 +107,7 @@ app.post("/api/playlists", function(req, res) {
 
 app.get("/api/users/", function(req, res) {
     console.log(req.body);
-    db.Users.findAll({
+    db.User.findAll({
         where: {
             id: req.body.id
         },
@@ -124,7 +123,7 @@ app.get("/api/users/", function(req, res) {
 
 app.get("/api/users/:id", function(req, res) {
     console.log(req.body);
-    db.Users.findOne({
+    db.User.findOne({
         where: {
             id: req.params.id
         },
@@ -137,7 +136,7 @@ app.get("/api/users/:id", function(req, res) {
 
 
 app.get("/api/subscriptions", function(req, res) {
-    db.Subscriptions.findAll({
+    db.Subscription.findAll({
         where: {
         id: req.body.id
         },

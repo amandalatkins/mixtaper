@@ -22,7 +22,7 @@ app.get("/profile/:id", function(req, res) {
         where: {
             id: req.params.id
         },
-            include: [db.Playlists, db.Subscriptions] 
+            include: [db.Playlist, db.Subscription] 
     }).then(function(dbProfile) {
         res.json(dbProfile);
     });
