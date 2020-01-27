@@ -9,14 +9,31 @@ $(document).ready(function() {
 //login button
 //redirects to authentication then to userPlaylists
 function handleLoginPress(e){
-    if ()
-}
+    e.preventDefault();
+    if (!loginInput || !passwordInput) {
+        alert("Please enter your username and password");
+        return;
+    }
+    $.ajax('/api/users/login', {
+        data: {
+          username: $('#login-input .username').val().trim(),
+          password: $('#password-input .password').val().trim()
+        },
+        type: "POST"
+    }).then(function(response) {
+        if (response.username) {
+            console.log("Logged In!");
+            location.replace('/profile');
+        }
+        });
+};
 
-//create account button
-//saves login information to user db 
-//then redirects to userPlaylists
 function handleCreateAccountPress(e){
-
+    e.preventDefault();
+    if (!loginInput || !passwordInput) {
+        alert("Please enter your username and password");
+        return;
+    }
+    
 }
 });
-
