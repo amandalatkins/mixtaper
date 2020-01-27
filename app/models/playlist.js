@@ -20,7 +20,13 @@ module.exports = function(sequelize, DataTypes) {
 
     Playlist.associate = function(models) {
         Playlist.belongsTo(models.User, { onDelete: "CASCADE", foreignKey: { allowNull: false } });
-        Playlist.hasMany(models.PlaylistSongs, { onDelete: "CASCADE", foreignKey: { allowNull: false } });
+        // Playlist.hasMany(models.PlaylistSongs, { onDelete: "CASCADE", foreignKey: { allowNull: false } });
+        Playlist.belongsToMany(models.Song, {
+            through: 'PlaylistSongs',
+            // as: 'playlists',
+            foreignKey: 'PlaylistId',
+            otherKey: 'songId'
+        });
     }
 
     return Playlist;
