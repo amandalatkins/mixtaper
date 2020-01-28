@@ -8,20 +8,22 @@ module.exports = function(app) {
         if (req.user) {
           res.redirect('/profile');
         } else {
-          res.sendFile(path.join(__dirname, "../public/index.html"));
+        //   res.sendFile(path.join(__dirname, "../public/index.html"));
+          res.sendFile(path.join(__dirname, "../../public/test-login.html"));
         }
     });
 
     app.get('/profile',isLoggedIn, (req,res) => {
-        res.sendFile(path.join(__dirname, "../public/profile.html"));
+        res.sendFile(path.join(__dirname, "../../public/test-profile.html"));
     });
 
     app.get("/profile/:id", function(req, res) {
-        res.sendFile(path.join(__dirname, '../public/profile.html'));
+        res.sendFile(path.join(__dirname, '../../public/test-profile.html'));
     }); 
 
-    app.get("/playlist/:id", function(req, res) {
-        res.sendFile(path.join(__dirname, '../public/playlistDetails.html'));
+    app.get("/playlists/:id", function(req, res) {
+        // res.sendFile(path.join(__dirname, '../../public/playlistDetails.html'));
+        res.sendFile(path.join(__dirname,'../../public/test-playlist.html');
     });
 
 

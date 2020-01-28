@@ -1,4 +1,5 @@
 const passport = require("../config/passport");
+const db = require("../models");
 require('dotenv').config();
 const SpotifyAPI = require("node-spotify-api");
 const spotifyKeys = require("../config/spotify");
@@ -10,7 +11,7 @@ module.exports = function(app) {
 // =========================================================
 
     // Get all users
-    app.get("/api/users/", function(req, res) {
+    app.get("/api/users", function(req, res) {
         console.log(req.body);
         db.User.findAll({
             include: [db.Playlists]
@@ -23,22 +24,33 @@ module.exports = function(app) {
     // Get one user by id and their playlists+subscriptions and return JSON
     app.get("/api/users/:id", function(req, res) {
         console.log(req.body);
-        db.User.findById(
-            req.params.id,
-            { include:[db.Playlist, db.Subscription] }
-        ).then(function(dbUser) {
+        db.User.findOne({
+            where: { id: req.params.id },
+            include:[db.Playlist, db.Subscription] 
+        }).then(function(dbUser) {
             res.json(dbUser);
         });
     }); 
 
     // Add a user
-    app.post("/api/users/add", function(req, res) {
+    app.post("/api/users", function(req, res) {
         db.Users.create({ 
             username: req.body.username,
             password: req.body.password
         }).then(function(dbUser) {
             res.status(200).end();
         });
+    });
+
+    // Get user data
+    app.get('/api/user_data', function(req, res) {
+
+        if (req.user) {
+            // The user is not logged in
+            res.json(req.user);
+        } else {
+            res.json({});
+        }
     });
 
 // SONG ROUTES
@@ -61,10 +73,10 @@ module.exports = function(app) {
 
     // Get one playlist by id and all songs from that playlist
     app.get("/api/playlists/:id", function(req, res) {
-        db.Playlist.findById(
-            req.params.id,
-            { include: [db.Song] }
-        ).then(function(dbPlaylist) {
+        db.Playlist.findOne({
+            where: { id: req.params.id },
+            include: [db.Song] 
+        }).then(function(dbPlaylist) {
             res.json(dbPlaylist);        
         });
     });
@@ -92,7 +104,9 @@ module.exports = function(app) {
     app.post("/api/playlists", function(req, res) {
         console.log(req.body);
         db.Playlist.create({
-        name: req.body.playlistName,
+            // *** req.body.NAME needs to match Lucas's key
+            name: req.body.name,
+            UserId: req.body.userId
         })
         .then(function(dbPlaylist) {
             res.status(200).end();
