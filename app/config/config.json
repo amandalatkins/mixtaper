@@ -1,14 +1,14 @@
 {
     "development": {
       "username": "root",
-      "password": "shit",
+      "password": "root",
       "database": "mixtaper",
       "host": "localhost",
       "dialect": "mysql"
     },
     "test": {
       "username": "root",
-      "password": "shit",
+      "password": "root",
       "database": "mixtaper",
       "host": "localhost",
       "dialect": "mysql",

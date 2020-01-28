@@ -44,7 +44,6 @@ module.exports = function(app) {
 
     // Get user data
     app.get('/api/user_data', function(req, res) {
-
         if (req.user) {
             // The user is not logged in
             res.json(req.user);
@@ -86,7 +85,6 @@ module.exports = function(app) {
         db.Song.create({
             title: req.body.title,
             artist: req.body.artist,
-            genre: req.body.genre,
             link: req.body.link 
         })
         .then(function(responseData) {
@@ -158,7 +156,7 @@ module.exports = function(app) {
         spotify.search({ 
             type: 'track', 
             query: req.params.song, 
-            limit: 1
+            limit: 10
         }, function(err, data) {
             if (err) {
                 console.log(err);
