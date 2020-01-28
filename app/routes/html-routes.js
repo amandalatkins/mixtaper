@@ -1,44 +1,28 @@
 var path = require("path");
+var isLoggedIn = require('../config/isLoggedIn.js');
 
 // Routes
 module.exports = function(app) {
 
-app.get("/", function(req,res) {
-    res.render("index");
-});
-//  Playlist, /api/playlists, GET, READ, Returning JSON data for ALL Playlists and ALL songs on each playlist *
+    app.get('/', (req, res) => {
+        if (req.user) {
+          res.redirect('/profile');
+        } else {
+          res.sendFile(path.join(__dirname, "../public/index.html"));
+        }
+    });
 
+    app.get('/profile',isLoggedIn, (req,res) => {
+        res.sendFile(path.join(__dirname, "../public/profile.html"));
+    });
 
+    app.get("/profile/:id", function(req, res) {
+        res.sendFile(path.join(__dirname, '../public/profile.html'));
+    }); 
 
-
-
-
-
-
-// // if needed
-// app.get("/", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../index.html"));
-//   });
-// // index route?
-
-
-// app.get("/user", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/user.html"));
-//   });
-// // user route?
-
-
-// app.get("/playlist", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/playlist.html"));
-//   });
-// // playlist route?
-
-
-
-// app.get("/profile", function(req, res) {
-//     res.sendFile(path.join(__dirname, "../public/profile.html"));
-//   });
-// // profile route?
+    app.get("/playlist/:id", function(req, res) {
+        res.sendFile(path.join(__dirname, '../public/playlistDetails.html'));
+    });
 
 
 };
