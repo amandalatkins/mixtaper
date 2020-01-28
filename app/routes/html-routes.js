@@ -8,8 +8,7 @@ module.exports = function(app) {
         if (req.user) {
           res.redirect('/profile');
         } else {
-        //   res.sendFile(path.join(__dirname, "../public/index.html"));
-          res.sendFile(path.join(__dirname, "../../public/test-login.html"));
+          res.sendFile(path.join(__dirname, "../public/index.html"));
         }
     });
 
@@ -22,8 +21,7 @@ module.exports = function(app) {
     }); 
 
     app.get("/playlists/:id", function(req, res) {
-        // res.sendFile(path.join(__dirname, '../../public/playlistDetails.html'));
-        res.sendFile(path.join(__dirname,'../../public/test-playlist.html');
+        res.sendFile(path.join(__dirname, '../../public/playlistDetails.html'));
     });
 
 
