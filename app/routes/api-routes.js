@@ -117,7 +117,7 @@ module.exports = function(app) {
     app.delete("/api/playlists/:id", function(req, res) {
         db.Playlist.destroy({
             where: {
-                id: req.parms.id
+                id: req.params.id
             }
         })
         .then(function(dbPlaylist) {
