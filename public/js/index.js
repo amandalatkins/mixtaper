@@ -44,8 +44,9 @@ function handleCreateAccountPress(e){
     }).then(function(response) {
         if (response.username) {
             console.log("Logged In!");
+            location.replace('/profile');
         }
-        });
+    });
     
 }
 });
