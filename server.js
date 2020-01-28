@@ -24,7 +24,9 @@ app.use(passport.session());
 
 // Require the routes files
 // *** NEEDS TO BE UPDATED TO DEXTER'S FILE STRUCTURE
-require("./app/routes/test_routes.js")(app);
+require("./app/routes/api-routes.js")(app);
+require("./app/routes/passport-routes.js")(app);
+require("./app/routes/html-routes.js")(app);
 
 // Require db models for syncing
 const db = require("./app/models");
