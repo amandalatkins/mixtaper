@@ -51,11 +51,11 @@ function createPlaylistRow(playlistData) {
   console.log("thing")
     var newPl = $("<tr>");
     newPl.data("playlist", playlistData);
+    newPl.append("<tr>");
     newPl.append("<td>" + playlistData.name + "</td>");
-    newPl.append("------")
     newPl.append("<td><a href='/playlists/" + playlistData.id + "'>Go to Playlist</a></td>");
-    newPl.append("------")
     newPl.append("<td><a style='cursor:pointer;color:red' class='delete-playlist' data-id= '"+ playlistData.id + "'><i class='fa fa-window-close fa-2x' aria-hidden='true' style='color:red'></i></a></td>");
+    newPl.append("</tr>");
     return newPl;
   }
 
