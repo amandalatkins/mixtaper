@@ -5,31 +5,50 @@
   <meta charset="UTF-8">
   <title>Mixtape</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+  <!-- <link rel="stylesheet" href="css/styles.css" media="screen" title="no title"> -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/004a5efe78.js"></script>
 
 </head>
 
-<body>
+<body background="assets/prism.png">
     <div class="jumbotron">
-        <h1 class="display-4">MIXTAPE</h1>
+        <h1 class="display-4">MIXTAPER</h1>
         <p class="lead">Create and share playlists! Enjoy and discover greate music!</p>
         <hr class="my-4">
+        <button type="submit" class="btn btn-primary" style="float: right;">logout</button>
       </div>
-      <button type="submit" class="btn btn-primary" style="float: right;">logout</button>
+      <div style="margin:40px">
+
     <div class="row">
-        <div class="col-sm-2 container">
+        <div class="col-sm-10 container playlist-container">
         <!--PLAYLIST LIST GOES HERE-->
+        <table class="table table-striped">
+          <tbody class="playlist-name">
+          </tbody>
+        </table>
         </div>
-        <div class="col-sm-2 container">
+        
+        <div class="col-sm-2 container user-names">
         <!--USERS LIST GOES HERE-->
+        <table class="table table-striped">
+          <tbody class="username-list">
+          </tbody>
+        </table>
         </div>
     </div>
+    <br>
+    <div class="row">
+      <input class="form-control" id="playlist-name" type="text" placeholder="enter a playlist name">
+
+      <button type="button" class="btn btn-primary btn-lg" id="add-playlist" >ADD PLAYLIST</button>
+    </div>
+  </div>
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script> -->
-  <script src="js/otherUserPlaylist.js" type="text/javascript"></script>
+  <script src="js/userPlaylist.js" type="text/javascript"></script>
 
 </body>
 
