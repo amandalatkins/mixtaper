@@ -129,11 +129,22 @@ module.exports = function(app) {
 
     app.post("/api/subscriptions/", function(req, res) {
         db.Subscription.create({
-        UserId: req.body.userId,
-        PlaylistId: req.body.playlistId
+            UserId: req.body.userId,
+            PlaylistId: req.body.playlistId
         })
         .then(function(dbSubscription) {
             res.json(dbSubscription)
+        });
+    });
+
+    app.get('/api/subscriptions/:userId/:playlistId', function(req, res) {
+        db.Subscription.findOne({ 
+            where: { 
+                UserId: req.params.userId,
+                PlaylistId: req.params.playlistId
+            }
+        }).then(response => {
+            res.json(response);
         });
     });
 
