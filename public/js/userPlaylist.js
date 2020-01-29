@@ -20,7 +20,6 @@ getPlaylists();
 
 // A function to handle what happens when the form is submitted to create a new playlist
 function handleAddPlaylistPress(event){
-  console.log("buttonclicktest")
     event.preventDefault();
 // Don't do anything if the name fields hasn't been filled out
 if (!playlistVar.val().trim().trim()) {
@@ -48,7 +47,6 @@ function insertPlaylist(playlistData) {
 
 // Function for creating a new list row for PLs
 function createPlaylistRow(playlistData) {
-  console.log("thing")
     var newPl = $("<tr>");
     newPl.data("playlist", playlistData);
     newPl.append("<td>" + playlistData.name + "</td>");
@@ -67,6 +65,23 @@ function getPlaylists() {
       for (var i = 0; i < data.Playlists.length; i++) {
         rowsToAdd.push(createPlaylistRow(data.Playlists[i]));
       }
+
+      for (var i = 0; i < data.Subscriptions.length; i++) {
+
+        var subPlaylistId = data.Subscriptions[i].PlaylistId;
+        var subId = data.Subscriptions[i].id;
+
+        $.get('/api/playlists/'+subPlaylistId).then(data => {
+
+  
+          var newPl = $("<tr>");
+          newPl.append("<td>" + data.name + "</td>");
+          newPl.append("<td><a href='/playlists/" + data.id + "'>Go to Playlist</a></td>");
+          newPl.append("<td><a style='cursor:pointer;color:red' class='delete-subscription' data-id= '"+ subId + "'>Unsubscribe</a></td>");
+
+          $('#userSubscriptions').append(newPl);
+        });
+      }
       
       renderPlaylistList(rowsToAdd);
       playlistVar.val("");
@@ -77,10 +92,9 @@ function renderPlaylistList(rows) {
     // playlistVar.children().not(":last").remove();
     // playlistVar.children(".alert").remove();
     if (rows.length) {
-      console.log(rows);
       playlistRow.prepend(rows);
     }
-    }
+}
 
 // Function for handling what happens when the delete button is pressed
 function handleDeletePlaylistPress() {
@@ -94,6 +108,17 @@ function handleDeletePlaylistPress() {
       });
 
   }
+
+
+$(document).on('click','.delete-subscription',function(e) {
+  e.preventDefault();
+    $.ajax({
+        url: '/api/subscriptions/'+$(this).data('id'),
+        type: 'DELETE'
+    }).then(data => {
+        location.reload();
+    });
+});
 //__________________________________________________________________________________________________________________
   // function createUserRow(userData) {
   //   var userList = $("<tr>");

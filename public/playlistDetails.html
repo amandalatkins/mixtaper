@@ -12,22 +12,33 @@
 <body>
       <div class="jumbotron">
         <h1 class="display-4">MIXTAPE</h1>
-        <p class="lead">Create and share playlists! Enjoy and discover greate music!</p>
+          <p class="lead">Create and share playlists! Enjoy and discover greate music!</p>
         <hr class="my-4">
       </div>
       <button type="button" class="btn btn-primary" style="float: right;" href="/logout">logout</button>
       <div class="container">
         <div class="row">
             <div class="col-lg-8 container">
-              <h1 id="playlistName"></h1>
-              <input type="text" id="newSong" value="landslide">
-              <button type="button" id="searchNewSong" class="btn btn-secondary" data-toggle="modal" data-target="resultsModal">Search</button>
+              <table>
+                <tr>
+                  <td>
+                    <h1 id="playlistName"></h1>
+                  </td>
+                  <td id="searchContainer">
+                      <input type="text" id="newSong" value="landslide">
+                      <button type="button" id="searchNewSong" class="btn btn-secondary" data-toggle="modal" data-target="resultsModal">Search</button>
+                  </td>
+                </tr>
+              </table>
+              
+              
               <table id="playlistSongs" style="width:100%">
               </table>
             <!--PLAYLIST LIST GOES HERE-->
             </div>
             <div class="col-sm-2 container">
-            <!--USERS LIST GOES HERE-->
+              <!--USERS LIST GOES HERE-->
+              <table id="usersList"></table>
             </div>
         </div>
       </div>
@@ -57,6 +68,7 @@
 
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <script src="/js/usersList.js"></script>
       <script src="/js/playlistDetails.js" type="text/javascript"></script>
 </body>
 </html>
