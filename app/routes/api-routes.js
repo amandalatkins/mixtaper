@@ -44,7 +44,6 @@ module.exports = function(app) {
 
     // Get user data
     app.get('/api/user_data', function(req, res) {
-
         if (req.user) {
             // The user is not logged in
             res.json(req.user);
@@ -86,7 +85,6 @@ module.exports = function(app) {
         db.Song.create({
             title: req.body.title,
             artist: req.body.artist,
-            genre: req.body.genre,
             link: req.body.link 
         })
         .then(function(responseData) {
@@ -131,15 +129,27 @@ module.exports = function(app) {
 
     app.post("/api/subscriptions/", function(req, res) {
         db.Subscription.create({
-        UserId: req.body.userId,
-        PlaylistId: req.body.playlistId
+            UserId: req.body.userId,
+            PlaylistId: req.body.playlistId
         })
         .then(function(dbSubscription) {
             res.json(dbSubscription)
         });
     });
 
+    app.get('/api/subscriptions/:userId/:playlistId', function(req, res) {
+        db.Subscription.findOne({ 
+            where: { 
+                UserId: req.params.userId,
+                PlaylistId: req.params.playlistId
+            }
+        }).then(response => {
+            res.json(response);
+        });
+    });
+
     app.delete("/api/subscriptions/:id", function(req, res) {
+        console.log('deleting subscription');
         db.Subscription.destroy({
             where: {
                 id: req.params.id
@@ -158,7 +168,7 @@ module.exports = function(app) {
         spotify.search({ 
             type: 'track', 
             query: req.params.song, 
-            limit: 1
+            limit: 10
         }, function(err, data) {
             if (err) {
                 console.log(err);
