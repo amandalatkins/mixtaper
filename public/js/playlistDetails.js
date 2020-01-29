@@ -22,7 +22,7 @@ $(document).ready(function() {
         $.get('/api/playlists/'+playlistId).then(data => {
                 console.log(data);
                 currentUserPlaylist = true;
-            if (data.userId !== currentUser.id) {
+            if (data.UserId !== currentUser.id) {
                 currentUserPlaylist = false;
                 renderAsOtherUser();
             }
