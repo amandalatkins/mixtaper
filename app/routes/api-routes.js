@@ -149,6 +149,7 @@ module.exports = function(app) {
     });
 
     app.delete("/api/subscriptions/:id", function(req, res) {
+        console.log('deleting subscription');
         db.Subscription.destroy({
             where: {
                 id: req.params.id

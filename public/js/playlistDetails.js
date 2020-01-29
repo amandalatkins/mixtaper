@@ -20,8 +20,9 @@ $(document).ready(function() {
     function renderPlaylist() {
 
         $.get('/api/playlists/'+playlistId).then(data => {
+                console.log(data);
                 currentUserPlaylist = true;
-            if (data.UserId !== currentUser.id) {
+            if (data.userId !== currentUser.id) {
                 currentUserPlaylist = false;
                 renderAsOtherUser();
             }
@@ -133,11 +134,13 @@ $(document).ready(function() {
 
     $(document).on('click','#unsubscribeTo',function(e) {
         e.preventDefault();
+        console.log($(this).data());
         $.ajax({
             url: '/api/subscriptions/'+$(this).data('subid'),
             type: 'DELETE'
         }).then(data => {
-            location.reload();
+            console.log(data);
+            // location.reload();
         });
     });
 
