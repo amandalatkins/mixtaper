@@ -13,39 +13,49 @@
 
 </head>
 
-<body background="assets/prism.png">
+<body style="background: url(/assets/prism.png)">
     <div class="jumbotron">
         <h1 class="display-4">MIXTAPER</h1>
         <p class="lead">Create and share playlists! Enjoy and discover greate music!</p>
         <hr class="my-4">
-        <button type="submit" class="btn btn-primary" style="float: right;">logout</button>
+        
+        <a class="btn btn-primary" style="float: right;" href="/logout">Logout</a>
+      <a class="btn btn-primary" style="float: right" href="/users">All Users</a>
+      <a class="btn btn-primary" style="float: right" href="/profile">My Profile</a>
       </div>
       <div style="margin:40px">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <input class="form-control" id="playlist-name" type="text" placeholder="enter a playlist name">
+              <button type="button" class="btn btn-primary btn-lg" id="add-playlist" >ADD PLAYLIST</button>
+            </div>
+          </div>
+        </div>
+        
 
     <div class="row">
         <div class="col-sm-10 container playlist-container">
         <!--PLAYLIST LIST GOES HERE-->
-          <strong>Playlists:</strong>
+          <strong style="color:#fff">Playlists:</strong>
         <table class="table table-striped">
           <tbody class="playlist-name">
           </tbody>
+        </table>
         
 
-          <strong>Subscriptions:</strong>
+          <strong style="color:#fff">Subscriptions:</strong>
           <table class="table table-striped" id="userSubscriptions">
           </table>
         </div>
     </div>
     <br>
-    <div class="row">
-      <input class="form-control" id="playlist-name" type="text" placeholder="enter a playlist name">
 
-      <button type="button" class="btn btn-primary btn-lg" id="add-playlist" >ADD PLAYLIST</button>
-    </div>
   </div>
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script> -->
-  <script src="js/userPlaylist.js" type="text/javascript"></script>
+  <script src="/js/userPlaylist.js" type="text/javascript"></script>
 
 </body>
 

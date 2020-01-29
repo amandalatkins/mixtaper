@@ -10,12 +10,20 @@ $(document).on("click", "#add-playlist", handleAddPlaylistPress);
 $(document).on("click", ".delete-playlist", handleDeletePlaylistPress);
 
 //get user_id global variable
-var currentUser;
-$.get('/api/user_data', function(CU) {
-currentUser = CU;
-// Getting the initial list of playlists
-getPlaylists();
-});
+var currentUser = {};
+
+currentUser.id = location.pathname.replace('/profile/','');
+
+if (!isNaN(currentUser.id)) {
+  getPlaylists();
+} else {
+  $.get('/api/user_data', function(CU) {
+    console.log(CU);
+    currentUser = CU;
+    // Getting the initial list of playlists
+    getPlaylists();
+  });
+}
 
 
 // A function to handle what happens when the form is submitted to create a new playlist
@@ -50,7 +58,7 @@ function createPlaylistRow(playlistData) {
     var newPl = $("<tr>");
     newPl.data("playlist", playlistData);
     newPl.append("<tr>");
-    newPl.append("<td>" + playlistData.name + "</td>");
+    newPl.append("<td style='color:#fff'>" + playlistData.name + "</td>");
     newPl.append("<td><a href='/playlists/" + playlistData.id + "'>Go to Playlist</a></td>");
     newPl.append("<td><a style='cursor:pointer;color:red' class='delete-playlist' data-id= '"+ playlistData.id + "'><i class='fa fa-window-close fa-2x' aria-hidden='true' style='color:red'></i></a></td>");
     newPl.append("</tr>");

@@ -14,7 +14,7 @@ module.exports = function(app) {
     app.get("/api/users", function(req, res) {
         console.log(req.body);
         db.User.findAll({
-            include: [db.Playlists]
+            include: [db.Playlist, db.Subscription]
         })
         .then(function(dbUser) {
             res.json(dbUser);

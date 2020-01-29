@@ -15,7 +15,9 @@
         <p class="lead">Create and share playlists! Enjoy and discover great music!</p>
         <hr class="my-4">
       </div>
-      <button type="button" class="btn btn-primary" style="float: right;" href="/logout">logout</button>
+      <a class="btn btn-primary" style="float: right;" href="/logout">Logout</a>
+      <a class="btn btn-primary" style="float: right" href="/users">All Users</a>
+      <a class="btn btn-primary" style="float: right" href="/profile">My Profile</a>
       <div class="container">
         <div class="row">
             <div class="col-lg-8 container">
@@ -25,7 +27,7 @@
                     <h1 id="playlistName"></h1>
                   </td>
                   <td id="searchContainer">
-                      <input type="text" id="newSong" value="landslide">
+                      <input type="text" id="newSong">
                       <button type="button" id="searchNewSong" class="btn btn-secondary" data-toggle="modal" data-target="resultsModal">Search</button>
                   </td>
                 </tr>
