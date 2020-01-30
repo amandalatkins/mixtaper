@@ -89,7 +89,7 @@ $(document).ready(function() {
             html += song.artists[0].name;
             html += "</td><td style='width:20%'>";
             html += `<a class="btn btn-sm btn-secondary" href="${song.external_urls.spotify}" target="_blank">Listen</a>&nbsp;`;
-            html += `<a href="#" class='add-song btn btn-sm btn-secondary' data-title='${song.name}' data-artist='${song.artists[0].name}' data-link='${song.external_urls.spotify}'>Add</button>`;
+            html += `<a href="#" class='add-song btn btn-sm btn-secondary' data-title="${song.name}" data-artist="${song.artists[0].name}" data-link="${song.external_urls.spotify}">Add</button>`;
             html += "</td></tr>";
 
             $('#searchResults').append(html);

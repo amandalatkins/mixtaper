@@ -85,7 +85,7 @@ function getPlaylists() {
 
   
           var newPl = $("<tr>");
-          newPl.append("<td>" + data.name + "</td>");
+          newPl.append("<td style='color:#fff'>" + data.name + "</td>");
           newPl.append("<td><a href='/playlists/" + data.id + "'>Go to Playlist</a></td>");
           newPl.append("<td><a style='cursor:pointer;color:red' class='delete-subscription' data-id= '"+ subId + "'>Unsubscribe</a></td>");
 
