@@ -16,11 +16,11 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../../public/userPlaylist.html"));
     });
 
-    app.get("/profile/:id", function(req, res) {
+    app.get("/profile/:id", isLoggedIn, function(req, res) {
         res.sendFile(path.join(__dirname, '../../public/otherUserPlaylist.html'));
     }); 
 
-    app.get("/playlists/:id", function(req, res) {
+    app.get("/playlists/:id", isLoggedIn, function(req, res) {
         res.sendFile(path.join(__dirname, '../../public/playlistDetails.html'));
     });
 
